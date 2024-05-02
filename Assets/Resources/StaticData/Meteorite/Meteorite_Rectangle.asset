@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b77468d92694fa187458b8621eb2abc, type: 3}
+  m_Name: Meteorite_Rectangle
+  m_EditorClassIdentifier: 
+  MeteoriteTypeId: 4
+  Speed: 4
+  Score: 73
+  MaxFillPercentageMeteorite: 90
+  MinFillPercentageMeteorite: 70
+  MeteoritePrefab: {fileID: 4507813284830400887, guid: be4a0bc6fd2a66242ac8fad2382be5aa, type: 3}
