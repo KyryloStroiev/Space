@@ -1,36 +1,38 @@
-using System;
 using CodeBase.Infrastraction;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Menu : MonoBehaviour
+namespace CodeBase.UI
 {
-    public Button StartGameButton;
-    public Button CloseButton;
-
-    private IGameStateMachine _gameStateMachine;
-
-    public void Construct(IGameStateMachine gameStateMachine) => 
-        _gameStateMachine = gameStateMachine;
-
-    private void Start()
+    public class Menu : MonoBehaviour
     {
-        StartGameButton.onClick.AddListener(StartGame);
-        if (CloseButton != null)
+        public Button StartGameButton;
+        public Button CloseButton;
+
+        private IGameStateMachine _gameStateMachine;
+
+        public void Construct(IGameStateMachine gameStateMachine) => 
+            _gameStateMachine = gameStateMachine;
+
+        private void Start()
         {
-            CloseButton.onClick.AddListener(BackGame);
+            StartGameButton.onClick.AddListener(StartGame);
+            if (CloseButton != null)
+            {
+                CloseButton.onClick.AddListener(BackGame);
+            }
         }
-    }
 
-    private void StartGame()
-    {
-        Time.timeScale = 1f;
-        _gameStateMachine.Enter<LoadLevelState>();
-    }
+        private void StartGame()
+        {
+            Time.timeScale = 1f;
+            _gameStateMachine.Enter<LoadLevelState>();
+        }
 
-    private void BackGame()
-    {
-        Time.timeScale = 1f;
-        Destroy(gameObject);
+        private void BackGame()
+        {
+            Time.timeScale = 1f;
+            Destroy(gameObject);
+        }
     }
 }

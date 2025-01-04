@@ -17,3 +17,6 @@ MonoBehaviour:
   MaxRangeXPosition: 40
   MinTimeSpawnMeteorite: 3
   MaxTimeSpawnMeteorite: 7
+  SpawnMeteoritePrefab: {fileID: 5770684591502178565, guid: 0ed7b9a48cec9f3449256630ee2144b9, type: 3}
+  CubeMeteoritePrefab: {fileID: 6941139861657842138, guid: 39774f7dbedac9648a57c99210f3aae9, type: 3}
+  Hud: {fileID: 1460200390389323524, guid: 2f65c7e2a08123d468588da2e66109ac, type: 3}

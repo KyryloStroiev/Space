@@ -1,43 +1,44 @@
-using CodeBase.Infrastraction.Factory;
-using CodeBase.Infrastraction.Service;
-using CodeBase.StateData;
+using CodeBase.Gameplay.Enemy;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Hud : MonoBehaviour
+namespace CodeBase.UI
 {
-   public TextMeshProUGUI ScoreText;
-   public Button MenuButton;
-
-   private float _score;
-
-   private SpawnMeteorite _spawnMeteorite;
-   private IWindowsService _windowsService;
-
-
-   public void Construct(IWindowsService windowsService, SpawnMeteorite spawnMeteorite)
+   public class Hud : MonoBehaviour
    {
-      _windowsService = windowsService;
-      _spawnMeteorite = spawnMeteorite;
-      _spawnMeteorite.DestroyMeteorite += ChangeScore;
-   }
+      public TextMeshProUGUI ScoreText;
+      public Button MenuButton;
 
-   private void Awake()
-   {
-      ScoreText.text = $"Score: {_score}";
-      MenuButton.onClick.AddListener(OpenMenu);
-   }
+      private float _score;
 
-   private void ChangeScore(float score)
-   {
-      _score += score;
-      ScoreText.text = _score.ToString();
-   }
+      private SpawnMeteorite _spawnMeteorite;
+      private IWindowsService _windowsService;
 
-   private void OpenMenu()
-   {
-      Time.timeScale = 0f;
-      _windowsService.Open(WindowsTypeId.PauseMenu);
+
+      public void Construct(IWindowsService windowsService, SpawnMeteorite spawnMeteorite)
+      {
+         _windowsService = windowsService;
+         _spawnMeteorite = spawnMeteorite;
+         _spawnMeteorite.DestroyMeteorite += ChangeScore;
+      }
+
+      private void Awake()
+      {
+         ScoreText.text = $"Score: {_score}";
+         MenuButton.onClick.AddListener(OpenMenu);
+      }
+
+      private void ChangeScore(float score)
+      {
+         _score += score;
+         ScoreText.text = _score.ToString();
+      }
+
+      private void OpenMenu()
+      {
+         Time.timeScale = 0f;
+         _windowsService.Open(WindowsTypeId.PauseMenu);
+      }
    }
 }
