@@ -3,6 +3,5 @@
     public enum ArmamentsTypeId
     {
         Bullet = 1,
-        CubeMeteorite = 2,
     }
 }

@@ -10,13 +10,7 @@ namespace CodeBase.Gameplay.Levels
 
         public Vector3 CenterPoitnEnemyInitialize;
         
-        public float MaxRangeXPosition;
-
-        public float MinTimeSpawnMeteorite = 1;
-        public float MaxTimeSpawnMeteorite = 3;
         
-        public GameObject SpawnMeteoritePrefab;
-        public GameObject CubeMeteoritePrefab;
         public GameObject Hud;
 
     }

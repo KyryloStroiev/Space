@@ -28,9 +28,7 @@ namespace CodeBase.Gameplay.Player.Factory
             {
                 case ArmamentsTypeId.Bullet:
                   return  CreateBullet(objectPool);
-
-                case ArmamentsTypeId.CubeMeteorite:
-                    return CreateCubeMeteorite();
+                
                 default:
                     throw new ArgumentOutOfRangeException(nameof(typeId), typeId, null);
             }
@@ -46,8 +44,6 @@ namespace CodeBase.Gameplay.Player.Factory
             
             return bulletPrefab;
         }
-
-        private GameObject CreateCubeMeteorite() => 
-            _instanceFactory.InstantiateObject(_staticDataService.ForLevel().CubeMeteoritePrefab);
+        
     }
 }

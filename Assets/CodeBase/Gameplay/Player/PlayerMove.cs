@@ -19,6 +19,7 @@ namespace CodeBase.Gameplay.Player
         private float _targetDirection;
         private float _smoothDirection;
         public float Direction => _smoothDirection;
+        
         private IInputService _inputService;
 
 

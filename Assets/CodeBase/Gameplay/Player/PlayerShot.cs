@@ -12,27 +12,26 @@ namespace CodeBase.Gameplay.Player
     {
         public Transform ShotPoint;
         public GameObject ShotCube;
-     
-        public float SpeedBullet { get; set; }
+
         public Sound Sound;
+        
+        public float SpeedBullet { get; set; }
 
         [SerializeField] private float Cooldown;
         private float _attackCooldown;
         
         private IObjectPool _objectPool;
-        private IStaticDataService _staticDataService;
         private IInputService _inputService;
 
 
-        public void Construct(IObjectPool objectPool, IStaticDataService staticDataService, IInputService inputService)
+        public void Construct(IObjectPool objectPool, IInputService inputService)
         {
             _inputService = inputService;
-            _staticDataService = staticDataService;
             _objectPool = objectPool;
             _attackCooldown = Cooldown;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             UpdateCooldown();
             

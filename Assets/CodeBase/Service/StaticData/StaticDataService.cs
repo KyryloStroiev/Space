@@ -14,9 +14,11 @@ namespace CodeBase.Infrastraction.Service
         private const string LevelData = "StaticData/Level/Level";
         private const string MeteoriteData = "StaticData/Meteorite";
         private const string WindowsData = "StaticData/UI/Windows";
+        private const string MeteoritesData = "StaticData/Meteorite/Common/commonMeteoritesConfig";
 
         private PlayerConfig _player;
         private LevelData _level;
+        private CommonMeteoritesData _meteorites;
         private Dictionary<MeteoriteTypeId, MeteoriteData> _meteorite;
         private Dictionary<WindowsTypeId, WindowsConfig> _windows;
 
@@ -26,12 +28,14 @@ namespace CodeBase.Infrastraction.Service
             LoadLevel();
             LoadMeteoriteConfig();
             LoadWindows();
+            LoadMeteoritesConfig();
         }
         
         public LevelData ForLevel() => _level;
 
         public PlayerConfig ForPlayer() => _player;
 
+        public CommonMeteoritesData ForCommonMeteorites() => _meteorites;
         public MeteoriteData ForMeteorite(MeteoriteTypeId meteoriteTypeId) => 
             _meteorite.TryGetValue(meteoriteTypeId, out MeteoriteData staticData) ? staticData : null;
 
@@ -41,6 +45,10 @@ namespace CodeBase.Infrastraction.Service
 
         private void LoadLevel() => 
             _level = Resources.Load<LevelData>(LevelData);
+        
+        private void LoadMeteoritesConfig() =>
+        _meteorites = Resources.Load<CommonMeteoritesData>(MeteoritesData);
+        
 
         private void LoadPlayerConfig() => 
             _player = Resources.Load<PlayerConfig>(PlayerData);

@@ -13,7 +13,6 @@ namespace CodeBase.Gameplay.Logic
         public Rigidbody2D Rigidbody;
 
         public LayerMask CubeMask;
-        public LayerMask HeartLayerMask;
 
         public float CircleOffsetY;
         public float CircleRadius;
@@ -51,7 +50,6 @@ namespace CodeBase.Gameplay.Logic
         {
             if ( CubeMeteorite(CubeMask) != null)
             {
-                
                 Destroy(CubeMeteorite(CubeMask).gameObject);
                 StartCoroutine(ReturnToPool(0.02f));
             }
@@ -66,17 +64,6 @@ namespace CodeBase.Gameplay.Logic
             _objectPool.DisableObject(gameObject, ArmamentsTypeId.Bullet);
         }
         
-        private void OnDrawGizmos()
-        {
-            
-            Gizmos.color = Color.red;
-
-           
-            Vector2 playerCenter = (Vector2)transform.position + new Vector2(0, CircleOffsetY);
-
-           
-            Gizmos.DrawWireSphere(playerCenter, CircleRadius);
-        }
         
     }
 }

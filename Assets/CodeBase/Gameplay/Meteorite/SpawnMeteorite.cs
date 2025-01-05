@@ -18,11 +18,9 @@ namespace CodeBase.Gameplay.Enemy
         private float _timeSpawn;
         private float _timePassed;
         private MeteoriteFactory _meteoriteFactory;
-        private IObjectPool _objectPool;
 
-        public void Construct(MeteoriteFactory meteoriteFactory, IObjectPool objectPool, float minTimeSpawn, float maxTimeSpawn )
+        public void Construct(MeteoriteFactory meteoriteFactory, float minTimeSpawn, float maxTimeSpawn )
         {
-            _objectPool = objectPool;
             _meteoriteFactory = meteoriteFactory;
             MinTimeSpawn = minTimeSpawn;
             MaxTimeSpawn = maxTimeSpawn;
@@ -32,9 +30,12 @@ namespace CodeBase.Gameplay.Enemy
         private void Update()
         {
             ChangeSpawnTime();
+            
             if (CanSpawn())
             {
                 SpawnMeteorites();
+                SetTimeSpawn();
+                ReducingSpawnTime();
             }
 
             PassedTime();
@@ -44,18 +45,15 @@ namespace CodeBase.Gameplay.Enemy
         private void SpawnMeteorites()
         {
             GameObject meteorite = _meteoriteFactory.CreateMeteorite(GetRandomType());
-            meteorite.GetComponent<Meteorite>().Construct(this, _objectPool);
-            SetTimeSpawn();
+            meteorite.GetComponent<Meteorite>().Construct(this);
         }
 
-        private MeteoriteTypeId GetRandomType()
-        {
-            int enumLength = Enum.GetValues(typeof(MeteoriteTypeId)).Length;
-            int randomIndex= Random.Range(0, enumLength);
-            ReducingSpawnTime();
-            return (MeteoriteTypeId)randomIndex;
-        }
+        private MeteoriteTypeId GetRandomType() => 
+            (MeteoriteTypeId)Random.Range(0, Enum.GetValues(typeof(MeteoriteTypeId)).Length);
 
+
+        private void SetTimeSpawn() => 
+            _timeSpawn = Random.Range(MinTimeSpawn, MaxTimeSpawn);
 
         private void ReducingSpawnTime()
         {
@@ -65,15 +63,12 @@ namespace CodeBase.Gameplay.Enemy
                 MinTimeSpawn = MaxTimeSpawn;
             }
         }
-        
+
         private void ChangeSpawnTime() => 
             _timeSpawn -= Time.deltaTime;
 
         private bool CanSpawn() => 
             _timeSpawn <= 0;
-
-        private void SetTimeSpawn() => 
-            _timeSpawn = Random.Range(MinTimeSpawn, MaxTimeSpawn);
 
         private void PassedTime() => 
             _timePassed += Time.deltaTime / 1000;

@@ -217,12 +217,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8c55b88c1666c4caca1a792d3468e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CubeLayer:
+  LayerMask:
     serializedVersion: 2
-    m_Bits: 1024
-  HeartMeteoriteLayer:
-    serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
 --- !u!61 &334819558
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -610,6 +607,10 @@ PrefabInstance:
     - target: {fileID: 4363242178489960660, guid: 4bcf732a986db244f8b0f6b2f334fd82, type: 3}
       propertyPath: m_Name
       value: Background
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363242178489960660, guid: 4bcf732a986db244f8b0f6b2f334fd82, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5425472664236981467, guid: 4bcf732a986db244f8b0f6b2f334fd82, type: 3}
       propertyPath: m_LocalPosition.x

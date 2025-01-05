@@ -14,5 +14,6 @@ namespace CodeBase.Infrastraction.Service
         MeteoriteData ForMeteorite(MeteoriteTypeId meteoriteTypeId);
 
         WindowsConfig ForWindows(WindowsTypeId windowsTypeId);
+        CommonMeteoritesData ForCommonMeteorites();
     }
 }

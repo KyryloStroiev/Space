@@ -10,7 +10,7 @@ namespace CodeBase.Gameplay.Logic
         private void OnTriggerEnter2D(Collider2D other)
         {
             Hit?.Invoke();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         
     }

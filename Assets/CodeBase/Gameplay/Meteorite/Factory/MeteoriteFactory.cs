@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CodeBase.Gameplay.Armaments;
+using CodeBase.Gameplay.Cameras;
 using CodeBase.Gameplay.Enemy;
 using CodeBase.Gameplay.Levels;
 using CodeBase.Gameplay.Logic;
@@ -13,23 +14,24 @@ namespace CodeBase.Gameplay.Factory
     {
         private readonly IStaticDataService _staticDataService;
         private readonly IInstanceFactory _instanceFactory;
-        private readonly IObjectPool _objectPool;
+        private readonly ICameraProvider _cameraProvider;
         private LevelData _levelData;
+        private CommonMeteoritesData _commonMeteoritesData;
 
 
-        public MeteoriteFactory(IStaticDataService staticDataService, IInstanceFactory instanceFactory, IObjectPool objectPool )
+        public MeteoriteFactory(IStaticDataService staticDataService, IInstanceFactory instanceFactory, ICameraProvider cameraProvider)
         {
             _staticDataService = staticDataService;
             _instanceFactory = instanceFactory;
-            _objectPool = objectPool;
+            _cameraProvider = cameraProvider;
         }
 
 
         public GameObject CreateSpawn()
         {
-            _levelData = _staticDataService.ForLevel();
-            GameObject spawnPoint = _instanceFactory.InstantiateObject(_levelData.SpawnMeteoritePrefab);
-            spawnPoint.GetComponent<SpawnMeteorite>().Construct(this, _objectPool, _levelData.MinTimeSpawnMeteorite, _levelData.MaxTimeSpawnMeteorite);
+            _commonMeteoritesData = _staticDataService.ForCommonMeteorites();
+            GameObject spawnPoint = _instanceFactory.InstantiateObject(_commonMeteoritesData.SpawnMeteoritePrefab);
+            spawnPoint.GetComponent<SpawnMeteorite>().Construct(this, _commonMeteoritesData.MinTimeSpawnMeteorite, _commonMeteoritesData.MaxTimeSpawnMeteorite);
             return spawnPoint;
         }
 
@@ -61,7 +63,7 @@ namespace CodeBase.Gameplay.Factory
                 if (Random.value < fillPercentage)
                 {
                     GameObject instantiate =
-                        _instanceFactory.InstantiateObject(_staticDataService.ForLevel().CubeMeteoritePrefab, emptyPoint[i].transform.position);
+                        _instanceFactory.InstantiateObject(_staticDataService.ForCommonMeteorites().CubeMeteoritePrefab, emptyPoint[i].transform.position);
                     
                     instantiate.transform.parent = meteorite.transform;
                     cubes.Add(instantiate);
@@ -71,7 +73,8 @@ namespace CodeBase.Gameplay.Factory
 
         private Vector3 CalculateSpawnPosition()
         {
-            float randomSpawnXPosition = Random.Range(-_levelData.MaxRangeXPosition, _levelData.MaxRangeXPosition);
+            _levelData = _staticDataService.ForLevel();
+            float randomSpawnXPosition = Random.Range(-_cameraProvider.WorldScreenWidth/2, _cameraProvider.WorldScreenHeight/2);
             
             return new Vector3(randomSpawnXPosition, _levelData.CenterPoitnEnemyInitialize.y,
                 _levelData.CenterPoitnEnemyInitialize.z);

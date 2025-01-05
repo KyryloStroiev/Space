@@ -1,4 +1,6 @@
-﻿using CodeBase.Gameplay.Factory;
+﻿using CodeBase.Common.PhysicsService;
+using CodeBase.Gameplay.Cameras;
+using CodeBase.Gameplay.Factory;
 using CodeBase.Gameplay.Logic;
 using CodeBase.Infrastraction.Service;
 using CodeBase.Service.InputsService;
@@ -14,15 +16,20 @@ namespace CodeBase.Gameplay.Player.Factory
         private readonly IObjectPool _objectPool;
         private readonly IWindowsService _windowsService;
         private readonly IInputService _inputService;
+        private readonly ICameraProvider _cameraProvider;
+        private readonly IPhysicsService _physicsService;
 
         public PlayerFactory(IStaticDataService staticDataService, IInstanceFactory instanceFactory, 
-            IObjectPool objectPool, IWindowsService windowsService, IInputService inputService )  
+            IObjectPool objectPool, IWindowsService windowsService, IInputService inputService, 
+            ICameraProvider cameraProvider, IPhysicsService physicsService )  
         {
             _staticDataService = staticDataService;
             _instanceFactory = instanceFactory;
             _objectPool = objectPool;
             _windowsService = windowsService;
             _inputService = inputService;
+            _cameraProvider = cameraProvider;
+            _physicsService = physicsService;
         }
 
         public GameObject CreatePlayer(Vector3 at)
@@ -43,13 +50,15 @@ namespace CodeBase.Gameplay.Player.Factory
             foreach (PlayerShot playerShot in playerShots)
             {
                 playerShot.SpeedBullet = config.SpeedBullet;
-                playerShot.Construct(_objectPool, _staticDataService, _inputService);
+                playerShot.Construct(_objectPool, _inputService);
             }
 
+            playerPrefab.GetComponent<ShipBox>().Construct(_objectPool, _physicsService);
+            
             PlayerMove playerMove = playerPrefab.GetComponent<PlayerMove>();
             playerMove.Construct(_inputService);
             playerMove.Speed = config.Speed;
-            playerMove.MaxXPosition = config.MaxXPosition;
+            playerMove.MaxXPosition = _cameraProvider.WorldScreenWidth / 2;
         }
     }
 }

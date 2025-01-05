@@ -9,8 +9,7 @@ namespace CodeBase.Gameplay.Player
         public float Speed = 15f;
 
         public float SpeedBullet = 10f;
-
-        public float MaxXPosition = 44f;
+        
         
         public GameObject PlayerPrefab;
         public GameObject BulletPrefab;

@@ -9,9 +9,9 @@ namespace CodeBase.Gameplay.Player
     {
         public Heart Heart;
         public PlayerMove PlayerMove;
+        
         private IWindowsService _windowsService;
-
-
+        
         public event Action DeathPlayer;
 
         public void Construct(IWindowsService windowsService)

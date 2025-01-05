@@ -8,8 +8,7 @@ namespace CodeBase.Gameplay.Logic
 {
     public class DestroyCollider : MonoBehaviour
     {
-        public LayerMask CubeLayer;
-        public LayerMask HeartMeteoriteLayer;
+        public LayerMask LayerMask;
         
         private IPhysicsService _physicsService;
         private IObjectPool _objectPool;
@@ -28,23 +27,18 @@ namespace CodeBase.Gameplay.Logic
 
         private void CheckCube()
         {
-            if ( CubeMeteorite(CubeLayer) != null)
-            {
-                _objectPool.DisableObject(CubeMeteorite(CubeLayer).gameObject, ArmamentsTypeId.CubeMeteorite);
-            }
-            else if (CubeMeteorite(HeartMeteoriteLayer) != null)
-            {
-                Destroy(CubeMeteorite(HeartMeteoriteLayer).gameObject);
-            }
+            if ( CubeMeteorite() != null)
+             Destroy(CubeMeteorite().gameObject);
+            
         }
 
-        private Collider2D CubeMeteorite(LayerMask layerMask) => 
-            _physicsService.BoxCastCollider(transform, layerMask);
+        private Collider2D CubeMeteorite() => 
+            _physicsService.BoxCastCollider(transform, LayerMask);
      
+        
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-
             
             Gizmos.matrix = Matrix4x4.TRS(transform.position, Quaternion.Euler(0, 0, transform.eulerAngles.z), Vector3.one);
             Gizmos.DrawWireCube(Vector3.zero, transform.localScale);

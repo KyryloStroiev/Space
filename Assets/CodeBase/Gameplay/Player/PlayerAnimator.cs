@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace CodeBase.Gameplay.Player
 {
@@ -6,18 +7,11 @@ namespace CodeBase.Gameplay.Player
    {
       private static readonly int MoveHash = Animator.StringToHash("Move");
 
-      private Animator _animator;
-      private PlayerMove _playerMove;
+      public Animator Animator;
+      public PlayerMove PlayerMove;
 
-      private void Awake()
-      {
-         _animator = GetComponent<Animator>();
-         _playerMove = GetComponent<PlayerMove>();
-      }
-
-      private void Update()
-      {
-         _animator.SetFloat(MoveHash, _playerMove.Direction);
-      }
+      
+      private void Update() => 
+         Animator.SetFloat(MoveHash, PlayerMove.Direction);
    }
 }
