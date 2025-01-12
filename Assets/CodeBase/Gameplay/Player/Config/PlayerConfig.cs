@@ -1,5 +1,6 @@
 ﻿using CodeBase.Gameplay.Logic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace CodeBase.Gameplay.Player
 {
@@ -13,6 +14,7 @@ namespace CodeBase.Gameplay.Player
         
         public GameObject PlayerPrefab;
         public GameObject BulletPrefab;
+        public GameObject BombPrefab;
         
 
 

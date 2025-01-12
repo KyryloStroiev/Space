@@ -1,6 +1,7 @@
 ﻿using CodeBase.Gameplay.Enemy;
 using CodeBase.Infrastraction;
 using CodeBase.Infrastraction.Service;
+using CodeBase.Infrastraction.States;
 using CodeBase.UI;
 using UnityEngine;
 

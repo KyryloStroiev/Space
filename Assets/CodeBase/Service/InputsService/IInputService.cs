@@ -2,7 +2,7 @@ namespace CodeBase.Service.InputsService
 {
     public interface IInputService
     {
-        bool GetShooting { get; }
+        bool GetLaserShooting { get; }
         float Axis();
     }
 }

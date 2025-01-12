@@ -230,7 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
 --- !u!61 &334819558
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -352,9 +352,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 45.9
   orthographic: 1
-  orthographic size: 30
+  orthographic size: 29.2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -523,6 +523,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1533643249}
   - component: {fileID: 1533643248}
+  - component: {fileID: 1533643251}
+  - component: {fileID: 1533643250}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -543,7 +545,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
-  _monoInstallers: []
+  _monoInstallers:
+  - {fileID: 1533643251}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -576,6 +579,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1533643250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533643247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2214957c1cf49af8a6bcf14eafb45e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainCamera: {fileID: 519420031}
+  StartPoint: {fileID: 1635276962}
+--- !u!114 &1533643251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533643247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab0f3ac492541040a12dc4ea0e3b5e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Initializers:
+  - {fileID: 1533643250}
 --- !u!1 &1635276961
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4363242178489960660, guid: 4bcf732a986db244f8b0f6b2f334fd82, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5425472664236981467, guid: 4bcf732a986db244f8b0f6b2f334fd82, type: 3}
       propertyPath: m_LocalPosition.x
@@ -663,7 +694,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6699619342023496936, guid: 4bcf732a986db244f8b0f6b2f334fd82, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

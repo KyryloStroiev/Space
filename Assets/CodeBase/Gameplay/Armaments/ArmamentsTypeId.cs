@@ -3,5 +3,6 @@
     public enum ArmamentsTypeId
     {
         Bullet = 1,
+        Bomb = 2,
     }
 }

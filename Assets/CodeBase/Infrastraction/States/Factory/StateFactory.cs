@@ -1,4 +1,4 @@
-﻿using CodeBase.Infrastraction.StateInfrastructure;
+﻿using CodeBase.Infrastraction.States.StateInfrastructure;
 using Zenject;
 
 namespace CodeBase.Infrastraction.States.Factory

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 15
   SpeedBullet: 10
-  MaxXPosition: 50
   PlayerPrefab: {fileID: 9072020969581434280, guid: 94e47a39d96cec64b9c7b446c6a97f51, type: 3}
   BulletPrefab: {fileID: 3400171551861801387, guid: bb305631c0ec6a547a32e8e22efe2582, type: 3}
+  BombPrefab: {fileID: 7608744025849636451, guid: 45bb649de0954ba4599cfa841a9cc48f, type: 3}

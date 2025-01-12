@@ -8,25 +8,23 @@ using UnityEngine;
 
 namespace CodeBase.Gameplay.Player
 {
-    public class PlayerShot : MonoBehaviour
+    public class PlayerBulletShot : MonoBehaviour
     {
         public Transform ShotPoint;
         public GameObject ShotCube;
 
         public Sound Sound;
-        
+
         public float SpeedBullet { get; set; }
 
         [SerializeField] private float Cooldown;
         private float _attackCooldown;
-        
+
         private IObjectPool _objectPool;
-        private IInputService _inputService;
 
 
-        public void Construct(IObjectPool objectPool, IInputService inputService)
+        public void Construct(IObjectPool objectPool)
         {
-            _inputService = inputService;
             _objectPool = objectPool;
             _attackCooldown = Cooldown;
         }
@@ -34,14 +32,10 @@ namespace CodeBase.Gameplay.Player
         private void FixedUpdate()
         {
             UpdateCooldown();
-            
-            if (_inputService.GetShooting )
-            {
-                Shot();
-            }
+            Shot();
         }
 
-        
+
         private void Shot()
         {
             if (CooldownUp() && ShotCube!= null)

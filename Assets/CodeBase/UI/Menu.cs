@@ -1,4 +1,6 @@
 using CodeBase.Infrastraction;
+using CodeBase.Infrastraction.States;
+using CodeBase.Infrastraction.States.GameStates;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +28,7 @@ namespace CodeBase.UI
         private void StartGame()
         {
             Time.timeScale = 1f;
+            Destroy(gameObject);
             _gameStateMachine.Enter<LoadLevelState>();
         }
 

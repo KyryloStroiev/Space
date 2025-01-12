@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CodeBase.Gameplay.Armaments;
-using CodeBase.Gameplay.Factory;
-using CodeBase.Gameplay.Player;
 using CodeBase.Gameplay.Player.Factory;
-using CodeBase.Infrastraction.Service;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Logic
@@ -13,7 +11,7 @@ namespace CodeBase.Gameplay.Logic
         private readonly IArmamentsFactory _armamentsFactory;
         private Dictionary<ArmamentsTypeId, Queue<GameObject>> _objectQueue = new();
 
-        private int _sizePool = 200;
+      
 
         public ObjectPool(IArmamentsFactory armamentsFactory)
         {
@@ -23,7 +21,8 @@ namespace CodeBase.Gameplay.Logic
         
         public void Instantiate()
         {
-            CreateObject(ArmamentsTypeId.Bullet);
+            CreateObject(ArmamentsTypeId.Bullet, 200);
+            CreateObject(ArmamentsTypeId.Bomb, 3);
         }
 
         public GameObject ActiveObject(ArmamentsTypeId typeId, Vector3 position)
@@ -37,8 +36,7 @@ namespace CodeBase.Gameplay.Logic
                 }
                 else
                 {
-                    obj = CreateObject(typeId);
-                    _sizePool++;
+                    obj = CreateObject(typeId, 3);
                 }
 
                 obj.gameObject.transform.position = position;
@@ -56,18 +54,22 @@ namespace CodeBase.Gameplay.Logic
             _objectQueue[typeId].Enqueue(obj);
         }
 
-        private GameObject CreateObject(ArmamentsTypeId typeId)
+        private GameObject CreateObject(ArmamentsTypeId typeId, float sizePool)
         {
             _objectQueue[typeId] = new Queue<GameObject>();
+
+            GameObject lastObj = null;
+            int z = 0;
             
-            for (int i = 0; i < _sizePool; i++)
+            for (int i = 0; i < sizePool; i++)
             {
+                
                 GameObject obj = _armamentsFactory.CreateArmaments(typeId, this);
                 obj.SetActive(false);
                 _objectQueue[typeId].Enqueue(obj);
-                return obj;
+                lastObj = obj;
             }
-            return null;
+            return lastObj;
         }
     }
 }

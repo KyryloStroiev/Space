@@ -7,5 +7,6 @@ namespace CodeBase.Gameplay.Player.Factory
     public interface IArmamentsFactory
     {
         GameObject CreateArmaments(ArmamentsTypeId typeId, IObjectPool objectPool);
+        
     }
 }

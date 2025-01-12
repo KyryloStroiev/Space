@@ -182,9 +182,6 @@ MonoBehaviour:
   Rigidbody: {fileID: 3523389774789916018}
   CubeMask:
     serializedVersion: 2
-    m_Bits: 1024
-  HeartLayerMask:
-    serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 3072
   CircleOffsetY: 0.13
   CircleRadius: 0.35

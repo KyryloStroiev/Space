@@ -3,12 +3,13 @@ using CodeBase.Gameplay.Factory;
 using CodeBase.Gameplay.Levels;
 using CodeBase.Gameplay.Logic;
 using CodeBase.Gameplay.Player.Factory;
+using CodeBase.Infrastraction.Loading;
 using CodeBase.Infrastraction.Service;
-using CodeBase.Infrastraction.StateInfrastructure;
+using CodeBase.Infrastraction.States.StateInfrastructure;
 using CodeBase.UI;
 using UnityEngine;
 
-namespace CodeBase.Infrastraction
+namespace CodeBase.Infrastraction.States.GameStates
 {
     public class LoadLevelState: IState
     {
@@ -20,13 +21,12 @@ namespace CodeBase.Infrastraction
         private readonly IPlayerFactory _playerFactory;
         private readonly IMeteoriteFactory _meteoriteFactory;
         private readonly IWindowsService _windowsService;
-        private readonly IUIFactory _uiFactory;
         private readonly IInstanceFactory _instanceFactory;
 
 
         public LoadLevelState(GameStateMachine gameStateMachine, ISceneLoader sceneLoader,
             IObjectPool objectPool, IStaticDataService staticDataService, IPlayerFactory playerFactory, IMeteoriteFactory meteoriteFactory,
-            IWindowsService windowsService, IUIFactory uiFactory, IInstanceFactory instanceFactory)
+            IWindowsService windowsService, IInstanceFactory instanceFactory)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
@@ -35,17 +35,13 @@ namespace CodeBase.Infrastraction
             _playerFactory = playerFactory;
             _meteoriteFactory = meteoriteFactory;
             _windowsService = windowsService;
-            _uiFactory = uiFactory;
             _instanceFactory = instanceFactory;
         }
 
         public void Enter()
         {
-            _uiFactory.Construct(_gameStateMachine);
-            _staticDataService.Load();
             _instanceFactory.CleanUp();
             _sceneLoader.Load(NameScene, OnLoader);
-            
         }
 
         private void OnLoader()
@@ -61,6 +57,7 @@ namespace CodeBase.Infrastraction
             GameObject spawn = _meteoriteFactory.CreateSpawn();
 
             _windowsService.CreateHud(spawn.GetComponent<SpawnMeteorite>());
+            
             LevelData levelData = _staticDataService.ForLevel();
 
             InitialPlayer(levelData);

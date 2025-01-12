@@ -45,20 +45,21 @@ namespace CodeBase.Gameplay.Player.Factory
         private void ConfigurePlayer(GameObject playerPrefab, PlayerConfig config)
         {
             playerPrefab.GetComponent<PlayerDeath>().Construct(_windowsService);
-            PlayerShot[] playerShots = playerPrefab.GetComponentsInChildren<PlayerShot>();
+            PlayerBulletShot[] playerShots = playerPrefab.GetComponentsInChildren<PlayerBulletShot>();
 
-            foreach (PlayerShot playerShot in playerShots)
+            foreach (PlayerBulletShot playerShot in playerShots)
             {
                 playerShot.SpeedBullet = config.SpeedBullet;
-                playerShot.Construct(_objectPool, _inputService);
+                playerShot.Construct(_objectPool);
             }
 
             playerPrefab.GetComponent<ShipBox>().Construct(_objectPool, _physicsService);
+            playerPrefab.GetComponent<PlayerSetBomb>().Construct(_objectPool, _inputService);
             
             PlayerMove playerMove = playerPrefab.GetComponent<PlayerMove>();
             playerMove.Construct(_inputService);
             playerMove.Speed = config.Speed;
-            playerMove.MaxXPosition = _cameraProvider.WorldScreenWidth / 2;
+            playerMove.MaxXPosition = _cameraProvider.WorldScreenWidth/2;
         }
     }
 }

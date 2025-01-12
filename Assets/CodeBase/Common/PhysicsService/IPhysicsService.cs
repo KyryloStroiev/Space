@@ -6,5 +6,6 @@ namespace CodeBase.Common.PhysicsService
     {
         Collider2D CircleCastCollider(Vector3 position, float circleOffsetY, float circleRadius, int layerMask);
         Collider2D BoxCastCollider(Transform transform, int layerMask);
+        Collider2D[] CircleAllCastCollider(Vector3 position, float circleRadius, int layerMask);
     }
 }

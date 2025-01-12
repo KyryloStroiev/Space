@@ -2,8 +2,11 @@ using CodeBase.Gameplay.Cameras;
 using CodeBase.Gameplay.Factory;
 using CodeBase.Gameplay.Levels;
 using CodeBase.Gameplay.Logic;
+using CodeBase.Infrastraction.Loading;
 using CodeBase.Infrastraction.Service;
+using CodeBase.Infrastraction.States;
 using CodeBase.Infrastraction.States.Factory;
+using CodeBase.Infrastraction.States.GameStates;
 using UnityEngine;
 using Zenject;
 
@@ -36,8 +39,10 @@ namespace CodeBase.Infrastraction.Installers
         private void BindGameState()
         {
             Container.BindInterfacesAndSelfTo<BootstrapState>().AsSingle();
-            Container.BindInterfacesAndSelfTo<GameLoopState>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LoadingHomeScreenState>().AsSingle();
+            Container.BindInterfacesAndSelfTo<HomeScreenState>().AsSingle();
             Container.BindInterfacesAndSelfTo<LoadLevelState>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameLoopState>().AsSingle();
         }
 
         public void Initialize()

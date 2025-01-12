@@ -32,7 +32,7 @@ namespace CodeBase.UI
       private void ChangeScore(float score)
       {
          _score += score;
-         ScoreText.text = _score.ToString();
+         ScoreText.text = $"Score: {_score.ToString()}";
       }
 
       private void OpenMenu()

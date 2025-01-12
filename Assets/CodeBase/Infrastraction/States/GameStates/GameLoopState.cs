@@ -1,8 +1,8 @@
-﻿using CodeBase.Infrastraction.StateInfrastructure;
+﻿using CodeBase.Infrastraction.States.StateInfrastructure;
 
-namespace CodeBase.Infrastraction
+namespace CodeBase.Infrastraction.States.GameStates
 {
-    public class GameLoopState: IState
+    public class GameLoopState: IState, IUpdateable
     {
         private readonly GameStateMachine _gameStateMachine;
 
@@ -12,6 +12,11 @@ namespace CodeBase.Infrastraction
         }
 
         public void Enter()
+        {
+            
+        }
+
+        public void Update()
         {
             
         }

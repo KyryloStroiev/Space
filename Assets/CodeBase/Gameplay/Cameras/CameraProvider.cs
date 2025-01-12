@@ -22,7 +22,7 @@ namespace CodeBase.Gameplay.Cameras
             Vector2 bottomLeft = MainCamera.ViewportToWorldPoint(new Vector3(0, 0, MainCamera.nearClipPlane));
             Vector2 topRight = MainCamera.ViewportToWorldPoint(new Vector3(1, 1, MainCamera.nearClipPlane));
             WorldScreenHeight = topRight.y - bottomLeft.y;
-            WorldScreenWidth = topRight.x - bottomLeft.x;
+            WorldScreenWidth = (topRight.x - bottomLeft.x)*0.7f;
         }
     }
 }

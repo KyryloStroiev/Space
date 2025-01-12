@@ -32,8 +32,11 @@ namespace CodeBase.Gameplay.Player
         private void FixedUpdate() => 
             Move();
 
-        private void Update() => 
+        private void Update()
+        {
+           
             MoveDirection();
+        }
 
         private void SetWingSpeed()
         {

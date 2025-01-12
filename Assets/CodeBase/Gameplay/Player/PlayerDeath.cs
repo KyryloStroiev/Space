@@ -29,7 +29,7 @@ namespace CodeBase.Gameplay.Player
             PlayerMove.enabled = false;
             DeathPlayer?.Invoke();
             
-            _windowsService.Open(WindowsTypeId.GameOverMenu);
+            //_windowsService.Open(WindowsTypeId.GameOverMenu);
 
         }
     }

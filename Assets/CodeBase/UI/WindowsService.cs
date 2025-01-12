@@ -38,7 +38,7 @@ namespace CodeBase.UI
 
         public void CleanUp()
         {
-           _instanceFactory.CleanUp();
+            //_instanceFactory.CleanUp();
         }
     }
     

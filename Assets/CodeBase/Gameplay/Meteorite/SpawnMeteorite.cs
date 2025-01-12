@@ -16,19 +16,24 @@ namespace CodeBase.Gameplay.Enemy
         public event Action<float> DestroyMeteorite;
 
         private float _timeSpawn;
-        private float _timePassed;
-        private MeteoriteFactory _meteoriteFactory;
+        private float _cooldownReduction= 0.015f;
+        private float _maxTimeSpawn;
+        
+        private IMeteoriteFactory _meteoriteFactory;
 
-        public void Construct(MeteoriteFactory meteoriteFactory, float minTimeSpawn, float maxTimeSpawn )
-        {
+        public void Construct(IMeteoriteFactory meteoriteFactory) => 
             _meteoriteFactory = meteoriteFactory;
-            MinTimeSpawn = minTimeSpawn;
-            MaxTimeSpawn = maxTimeSpawn;
+
+        private void Start()
+        {
+            _maxTimeSpawn = MaxTimeSpawn;
             SetTimeSpawn();
         }
 
         private void Update()
         {
+            Debug.Log(_maxTimeSpawn);
+            
             ChangeSpawnTime();
             
             if (CanSpawn())
@@ -37,8 +42,6 @@ namespace CodeBase.Gameplay.Enemy
                 SetTimeSpawn();
                 ReducingSpawnTime();
             }
-
-            PassedTime();
         }
 
 
@@ -53,14 +56,17 @@ namespace CodeBase.Gameplay.Enemy
 
 
         private void SetTimeSpawn() => 
-            _timeSpawn = Random.Range(MinTimeSpawn, MaxTimeSpawn);
+            _timeSpawn = Random.Range(MinTimeSpawn, _maxTimeSpawn);
 
         private void ReducingSpawnTime()
         {
-            MaxTimeSpawn -= _timePassed;
-            if (MaxTimeSpawn <= MinTimeSpawn)
+            if (_maxTimeSpawn > MinTimeSpawn)
             {
-                MinTimeSpawn = MaxTimeSpawn;
+                _maxTimeSpawn -= _cooldownReduction;
+            }
+            else
+            {
+                _maxTimeSpawn = MinTimeSpawn;
             }
         }
 
@@ -70,9 +76,7 @@ namespace CodeBase.Gameplay.Enemy
         private bool CanSpawn() => 
             _timeSpawn <= 0;
 
-        private void PassedTime() => 
-            _timePassed += Time.deltaTime / 1000;
-
+        
         public void DestroyMeteor(float score)
         {
             Sound.PlayOneShot(SoundType.MeteoriteDamage);

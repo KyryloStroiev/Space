@@ -28,7 +28,9 @@ namespace CodeBase.Gameplay.Player.Factory
             {
                 case ArmamentsTypeId.Bullet:
                   return  CreateBullet(objectPool);
-                
+
+                case ArmamentsTypeId.Bomb:
+                    return CreateBomb(objectPool);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(typeId), typeId, null);
             }
@@ -44,6 +46,16 @@ namespace CodeBase.Gameplay.Player.Factory
             
             return bulletPrefab;
         }
+
+        private GameObject CreateBomb(IObjectPool objectPool)
+        {
+            GameObject bombPrefab = _instanceFactory.InstantiateObject(_staticDataService.ForPlayer().BombPrefab);
+            Bomb bomb = bombPrefab.GetComponent<Bomb>();
+            bomb.Construct(objectPool, _physicsService);
+
+            return bombPrefab;
+        }
+    
         
     }
 }

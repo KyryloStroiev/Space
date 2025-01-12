@@ -6,12 +6,10 @@ namespace CodeBase.Gameplay.Logic
     public class Heart : MonoBehaviour
     {
         public event Action Hit;
-
-        private void OnTriggerEnter2D(Collider2D other)
+        
+        private void OnDestroy()
         {
             Hit?.Invoke();
-            gameObject.SetActive(false);
         }
-        
     }
 }

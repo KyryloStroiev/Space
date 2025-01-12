@@ -31,7 +31,10 @@ namespace CodeBase.Gameplay.Factory
         {
             _commonMeteoritesData = _staticDataService.ForCommonMeteorites();
             GameObject spawnPoint = _instanceFactory.InstantiateObject(_commonMeteoritesData.SpawnMeteoritePrefab);
-            spawnPoint.GetComponent<SpawnMeteorite>().Construct(this, _commonMeteoritesData.MinTimeSpawnMeteorite, _commonMeteoritesData.MaxTimeSpawnMeteorite);
+            SpawnMeteorite spawnMeteorite = spawnPoint.GetComponent<SpawnMeteorite>();
+            spawnMeteorite.Construct(this);
+            spawnMeteorite.MinTimeSpawn = _commonMeteoritesData.MinTimeSpawnMeteorite;
+            spawnMeteorite.MaxTimeSpawn = _commonMeteoritesData.MaxTimeSpawnMeteorite;
             return spawnPoint;
         }
 

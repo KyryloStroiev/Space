@@ -1,9 +1,8 @@
-﻿using CodeBase.Infrastraction.StateInfrastructure;
-using CodeBase.Infrastraction.States.Factory;
+﻿using CodeBase.Infrastraction.States.Factory;
+using CodeBase.Infrastraction.States.StateInfrastructure;
 using Zenject;
 
-
-namespace CodeBase.Infrastraction
+namespace CodeBase.Infrastraction.States
 {
     public class GameStateMachine : ITickable, IGameStateMachine
     {

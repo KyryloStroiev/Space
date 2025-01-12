@@ -1,6 +1,6 @@
 using System;
 
-namespace CodeBase.Infrastraction
+namespace CodeBase.Infrastraction.Loading
 {
     public interface ISceneLoader
     {

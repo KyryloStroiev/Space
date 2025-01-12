@@ -1,5 +1,5 @@
-﻿using CodeBase.Gameplay.Armaments;
-using CodeBase.Gameplay.Player;
+﻿using System;
+using CodeBase.Gameplay.Armaments;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Logic
