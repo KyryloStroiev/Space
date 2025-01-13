@@ -1,6 +1,7 @@
 ﻿using System;
 using CodeBase.Gameplay.Logic;
 using CodeBase.UI;
+using CodeBase.UI.Service;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Player

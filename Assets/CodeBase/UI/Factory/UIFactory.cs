@@ -1,24 +1,28 @@
-﻿using CodeBase.Gameplay.Enemy;
+﻿using CodeBase.Gameplay.Armaments;
+using CodeBase.Gameplay.Enemy;
+using CodeBase.Gameplay.Factory;
 using CodeBase.Infrastraction;
 using CodeBase.Infrastraction.Service;
 using CodeBase.Infrastraction.States;
-using CodeBase.UI;
+using CodeBase.UI.Service;
 using UnityEngine;
 
-namespace CodeBase.Gameplay.Factory
+namespace CodeBase.UI.Factory
 {
     public class UIFactory:  IUIFactory
     {
         private readonly IStaticDataService _staticDataService;
         private readonly IInstanceFactory _instanceFactory;
+        private readonly IHudService _hudService;
         private IUIFactory _iuiFactoryImplementation;
         private IGameStateMachine _gameStateMachine;
 
 
-        public UIFactory(IStaticDataService staticDataService, IInstanceFactory instanceFactory)
+        public UIFactory(IStaticDataService staticDataService, IInstanceFactory instanceFactory, IHudService hudService)
         {
             _staticDataService = staticDataService;
             _instanceFactory = instanceFactory;
+            _hudService = hudService;
         }
 
         public void Construct(IGameStateMachine gameStateMachine)
@@ -27,16 +31,19 @@ namespace CodeBase.Gameplay.Factory
         }
         public GameObject CreateHud(SpawnMeteorite spawnMeteorite, IWindowsService windowsService)
         {
-            GameObject UI = _instanceFactory.InstantiateObject(_staticDataService.ForLevel().Hud);
-            UI.GetComponent<Hud>().Construct(windowsService, spawnMeteorite);
-            return UI;
+            GameObject uiPrefab = _instanceFactory.InstantiateObject(_staticDataService.ForLevel().Hud);
+            Hud hud = uiPrefab.GetComponent<Hud>();
+            hud.Construct(windowsService, _hudService);
+            hud.MaxSpawnCountBomb = _staticDataService.GetArmamentData(ArmamentsTypeId.Bomb, 1).MaxSpawnCount;
+            
+            return uiPrefab;
         }
 
        
 
         public void CreateMenu(WindowsTypeId windowsTypeId)
         {
-            WindowsConfig windowsConfig = _staticDataService.ForWindows(windowsTypeId);
+            WindowsConfig windowsConfig = _staticDataService.GetWindowsConfig(windowsTypeId);
             GameObject Menu = _instanceFactory.InstantiateObject(windowsConfig.Prefab);
             Menu.GetComponent<Menu>().Construct(_gameStateMachine);
         }

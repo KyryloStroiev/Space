@@ -1,10 +1,12 @@
 ﻿using CodeBase.Common.PhysicsService;
+using CodeBase.Gameplay.Armaments;
 using CodeBase.Gameplay.Cameras;
 using CodeBase.Gameplay.Factory;
 using CodeBase.Gameplay.Logic;
 using CodeBase.Infrastraction.Service;
 using CodeBase.Service.InputsService;
 using CodeBase.UI;
+using CodeBase.UI.Service;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Player.Factory
@@ -18,10 +20,11 @@ namespace CodeBase.Gameplay.Player.Factory
         private readonly IInputService _inputService;
         private readonly ICameraProvider _cameraProvider;
         private readonly IPhysicsService _physicsService;
+        private readonly IHudService _hudService;
 
         public PlayerFactory(IStaticDataService staticDataService, IInstanceFactory instanceFactory, 
             IObjectPool objectPool, IWindowsService windowsService, IInputService inputService, 
-            ICameraProvider cameraProvider, IPhysicsService physicsService )  
+            ICameraProvider cameraProvider, IPhysicsService physicsService, IHudService hudService )  
         {
             _staticDataService = staticDataService;
             _instanceFactory = instanceFactory;
@@ -30,6 +33,7 @@ namespace CodeBase.Gameplay.Player.Factory
             _inputService = inputService;
             _cameraProvider = cameraProvider;
             _physicsService = physicsService;
+            _hudService = hudService;
         }
 
         public GameObject CreatePlayer(Vector3 at)
@@ -49,13 +53,16 @@ namespace CodeBase.Gameplay.Player.Factory
 
             foreach (PlayerBulletShot playerShot in playerShots)
             {
-                playerShot.SpeedBullet = config.SpeedBullet;
                 playerShot.Construct(_objectPool);
             }
 
             playerPrefab.GetComponent<ShipBox>().Construct(_objectPool, _physicsService);
-            playerPrefab.GetComponent<PlayerSetBomb>().Construct(_objectPool, _inputService);
             
+            PlayerSetBomb playerSetBomb = playerPrefab.GetComponent<PlayerSetBomb>();
+            playerSetBomb.MaxSpawnCountBombs =
+                _staticDataService.GetArmamentData(ArmamentsTypeId.Bomb, 1).MaxSpawnCount;
+            playerSetBomb.Construct(_objectPool, _inputService, _hudService);
+
             PlayerMove playerMove = playerPrefab.GetComponent<PlayerMove>();
             playerMove.Construct(_inputService);
             playerMove.Speed = config.Speed;

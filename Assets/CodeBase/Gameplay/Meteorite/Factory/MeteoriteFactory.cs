@@ -5,6 +5,7 @@ using CodeBase.Gameplay.Enemy;
 using CodeBase.Gameplay.Levels;
 using CodeBase.Gameplay.Logic;
 using CodeBase.Infrastraction.Service;
+using CodeBase.UI.Service;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,15 +16,17 @@ namespace CodeBase.Gameplay.Factory
         private readonly IStaticDataService _staticDataService;
         private readonly IInstanceFactory _instanceFactory;
         private readonly ICameraProvider _cameraProvider;
+        private readonly IHudService _hudService;
         private LevelData _levelData;
         private CommonMeteoritesData _commonMeteoritesData;
 
 
-        public MeteoriteFactory(IStaticDataService staticDataService, IInstanceFactory instanceFactory, ICameraProvider cameraProvider)
+        public MeteoriteFactory(IStaticDataService staticDataService, IInstanceFactory instanceFactory, ICameraProvider cameraProvider, IHudService hudService)
         {
             _staticDataService = staticDataService;
             _instanceFactory = instanceFactory;
             _cameraProvider = cameraProvider;
+            _hudService = hudService;
         }
 
 
@@ -32,7 +35,7 @@ namespace CodeBase.Gameplay.Factory
             _commonMeteoritesData = _staticDataService.ForCommonMeteorites();
             GameObject spawnPoint = _instanceFactory.InstantiateObject(_commonMeteoritesData.SpawnMeteoritePrefab);
             SpawnMeteorite spawnMeteorite = spawnPoint.GetComponent<SpawnMeteorite>();
-            spawnMeteorite.Construct(this);
+            spawnMeteorite.Construct(this, _hudService);
             spawnMeteorite.MinTimeSpawn = _commonMeteoritesData.MinTimeSpawnMeteorite;
             spawnMeteorite.MaxTimeSpawn = _commonMeteoritesData.MaxTimeSpawnMeteorite;
             return spawnPoint;

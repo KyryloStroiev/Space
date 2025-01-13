@@ -14,12 +14,13 @@ namespace CodeBase.Gameplay.Logic
 
         public LayerMask CubeMask;
 
-        public float CircleOffsetY;
         public float CircleRadius;
         public float SpeedBullet { get; set; }
+
+        private float _circleOffsetY;
+        private float _durationDestroyBullet = 6f;
         
         private IObjectPool _objectPool;
-        private float _durationDestroyBullet = 6f;
         private IPhysicsService _physicsService;
 
 
@@ -56,7 +57,7 @@ namespace CodeBase.Gameplay.Logic
         }
 
         private Collider2D CubeMeteorite(LayerMask layerMask) => 
-            _physicsService.CircleCastCollider(transform.position, CircleOffsetY, CircleRadius, layerMask);
+            _physicsService.CircleCastCollider(transform.position, _circleOffsetY, CircleRadius, layerMask);
         
         public IEnumerator ReturnToPool(float duration)
         {

@@ -1,6 +1,4 @@
-﻿using CodeBase.Gameplay.Logic;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 
 namespace CodeBase.Gameplay.Player
 {
@@ -8,15 +6,8 @@ namespace CodeBase.Gameplay.Player
     public class PlayerConfig: ScriptableObject
     {
         public float Speed = 15f;
-
-        public float SpeedBullet = 10f;
-        
         
         public GameObject PlayerPrefab;
-        public GameObject BulletPrefab;
-        public GameObject BombPrefab;
         
-
-
     }
 }

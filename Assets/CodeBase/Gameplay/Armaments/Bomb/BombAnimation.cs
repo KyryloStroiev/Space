@@ -10,17 +10,15 @@ namespace CodeBase.Gameplay.Armaments
         public SpriteRenderer SpriteRenderer;
         private Material _material => SpriteRenderer.material;
         
-        public float StartBlinkDuration = 0.5f;
-        public float StartСountdownBlinkDuration = 0.2f;
+        private float _startBlinkDuration = 0.5f;
         
         private Tween _blinkTween;
 
 
         private void OnEnable() => 
-            StartBlinking(StartBlinkDuration);
+            StartBlinking(_startBlinkDuration);
 
         
-
         public void StopBlinking()
         {
             if (_blinkTween != null && _blinkTween.IsActive())
@@ -42,7 +40,5 @@ namespace CodeBase.Gameplay.Armaments
             }
         }
         
-        public void StartCountdownBlinking() => 
-            StartBlinking(StartСountdownBlinkDuration);
     }
 }

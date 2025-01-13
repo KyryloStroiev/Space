@@ -2,6 +2,7 @@
 using CodeBase.Gameplay.Factory;
 using CodeBase.Gameplay.Logic;
 using CodeBase.Gameplay.Sounds;
+using CodeBase.UI.Service;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -20,9 +21,13 @@ namespace CodeBase.Gameplay.Enemy
         private float _maxTimeSpawn;
         
         private IMeteoriteFactory _meteoriteFactory;
+        private IHudService _hudService;
 
-        public void Construct(IMeteoriteFactory meteoriteFactory) => 
+        public void Construct(IMeteoriteFactory meteoriteFactory, IHudService hudService)
+        {
+            _hudService = hudService;
             _meteoriteFactory = meteoriteFactory;
+        }
 
         private void Start()
         {
@@ -32,8 +37,6 @@ namespace CodeBase.Gameplay.Enemy
 
         private void Update()
         {
-            Debug.Log(_maxTimeSpawn);
-            
             ChangeSpawnTime();
             
             if (CanSpawn())
@@ -77,10 +80,10 @@ namespace CodeBase.Gameplay.Enemy
             _timeSpawn <= 0;
 
         
-        public void DestroyMeteor(float score)
+        public void DestroyMeteor(int score)
         {
             Sound.PlayOneShot(SoundType.MeteoriteDamage);
-            DestroyMeteorite?.Invoke(score);
+            _hudService.GetScore(score);
         }
     }
     

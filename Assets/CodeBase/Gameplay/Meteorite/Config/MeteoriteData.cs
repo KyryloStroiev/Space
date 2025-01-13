@@ -10,7 +10,7 @@ namespace CodeBase.Gameplay.Enemy
         public float Speed;
         public float RotationSpeed = 100f;
 
-        public float Score = 5;
+        public int Score = 5;
         
         public float MaxFillPercentageMeteorite = 70;
         public float MinFillPercentageMeteorite = 20;

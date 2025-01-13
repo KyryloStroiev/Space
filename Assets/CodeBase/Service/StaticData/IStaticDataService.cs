@@ -1,4 +1,5 @@
-﻿using CodeBase.Gameplay.Enemy;
+﻿using CodeBase.Gameplay.Armaments;
+using CodeBase.Gameplay.Enemy;
 using CodeBase.Gameplay.Levels;
 using CodeBase.Gameplay.Player;
 using CodeBase.UI;
@@ -13,7 +14,8 @@ namespace CodeBase.Infrastraction.Service
 
         MeteoriteData ForMeteorite(MeteoriteTypeId meteoriteTypeId);
 
-        WindowsConfig ForWindows(WindowsTypeId windowsTypeId);
+        WindowsConfig GetWindowsConfig(WindowsTypeId windowsTypeId);
         CommonMeteoritesData ForCommonMeteorites();
+        ArmamentData GetArmamentData(ArmamentsTypeId armamentsTypeId, int level);
     }
 }

@@ -1,6 +1,6 @@
 using CodeBase.Gameplay.Enemy;
 
-namespace CodeBase.UI
+namespace CodeBase.UI.Service
 {
     public interface IWindowsService
     {

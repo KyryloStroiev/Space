@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using CodeBase.Gameplay.Armaments;
 using CodeBase.Gameplay.Enemy;
 using CodeBase.Gameplay.Levels;
 using CodeBase.Gameplay.Player;
@@ -15,12 +17,14 @@ namespace CodeBase.Infrastraction.Service
         private const string MeteoriteData = "StaticData/Meteorite";
         private const string WindowsData = "StaticData/UI/Windows";
         private const string MeteoritesData = "StaticData/Meteorite/Common/commonMeteoritesConfig";
+        private const string ArmamentsData = "StaticData/Armaments/";
 
         private PlayerConfig _player;
         private LevelData _level;
         private CommonMeteoritesData _meteorites;
         private Dictionary<MeteoriteTypeId, MeteoriteData> _meteorite;
         private Dictionary<WindowsTypeId, WindowsConfig> _windows;
+        private Dictionary<ArmamentsTypeId, ArmamentsConfig> _armaments;
 
         public void Load()
         {
@@ -29,6 +33,7 @@ namespace CodeBase.Infrastraction.Service
             LoadMeteoriteConfig();
             LoadWindows();
             LoadMeteoritesConfig();
+            LoadArmamentsConfig();
         }
         
         public LevelData ForLevel() => _level;
@@ -36,12 +41,28 @@ namespace CodeBase.Infrastraction.Service
         public PlayerConfig ForPlayer() => _player;
 
         public CommonMeteoritesData ForCommonMeteorites() => _meteorites;
+        
         public MeteoriteData ForMeteorite(MeteoriteTypeId meteoriteTypeId) => 
             _meteorite.TryGetValue(meteoriteTypeId, out MeteoriteData staticData) ? staticData : null;
 
-        public WindowsConfig ForWindows(WindowsTypeId windowsTypeId) => 
+        public WindowsConfig GetWindowsConfig(WindowsTypeId windowsTypeId) => 
             _windows.TryGetValue(windowsTypeId, out WindowsConfig windowsConfig) ? windowsConfig : null;
 
+        
+        public ArmamentData GetArmamentData(ArmamentsTypeId armamentsTypeId, int level)
+        {
+            ArmamentsConfig config = GetArmamentsConfig(armamentsTypeId);
+
+            return config.Datas[level-1];
+        }
+        
+        private ArmamentsConfig GetArmamentsConfig(ArmamentsTypeId armamentsTypeId)
+        {
+            if (_armaments.TryGetValue(armamentsTypeId, out ArmamentsConfig config))
+                return config;
+
+            throw new Exception($"Ability config for {armamentsTypeId} was not found");
+        }
 
         private void LoadLevel() => 
             _level = Resources.Load<LevelData>(LevelData);
@@ -52,6 +73,10 @@ namespace CodeBase.Infrastraction.Service
 
         private void LoadPlayerConfig() => 
             _player = Resources.Load<PlayerConfig>(PlayerData);
+
+        private void LoadArmamentsConfig() =>
+            _armaments = Resources.LoadAll<ArmamentsConfig>(ArmamentsData)
+                .ToDictionary(x => x.TypeId, x => x);
 
 
         private void LoadMeteoriteConfig() =>

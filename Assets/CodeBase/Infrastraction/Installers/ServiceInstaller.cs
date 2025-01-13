@@ -7,6 +7,8 @@ using CodeBase.Gameplay.Player.Factory;
 using CodeBase.Infrastraction.Service;
 using CodeBase.Service.InputsService;
 using CodeBase.UI;
+using CodeBase.UI.Factory;
+using CodeBase.UI.Service;
 using Zenject;
 
 namespace CodeBase.Infrastraction.Installers
@@ -24,8 +26,13 @@ namespace CodeBase.Infrastraction.Installers
     
         private void BindInputService() =>
             Container.Bind<IInputService>().To<InputService>().AsSingle();
-        private void BindUIService() => 
+
+        private void BindUIService()
+        {
             Container.Bind<IWindowsService>().To<WindowsService>().AsSingle();
+            Container.Bind<IHudService>().To<HudService>().AsSingle();
+        }
+            
 
         private void BindUIFactory() => 
             Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();

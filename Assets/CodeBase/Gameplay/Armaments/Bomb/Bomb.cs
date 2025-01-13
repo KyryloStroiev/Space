@@ -8,8 +8,9 @@ namespace CodeBase.Gameplay.Armaments
 {
     public class Bomb : MonoBehaviour
     {
-        public float TimeToExplode = 1.5f;
-        public float CircleRadius;
+        public float TimeToExplode { get; set; }
+        public float CircleRadius {get; set;}
+        
         public LayerMask LayerMask;
 
         public BombAnimation BombAnimation;

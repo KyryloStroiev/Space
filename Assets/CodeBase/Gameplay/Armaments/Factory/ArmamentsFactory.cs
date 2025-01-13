@@ -39,19 +39,26 @@ namespace CodeBase.Gameplay.Player.Factory
         
         private GameObject CreateBullet(IObjectPool objectPool)
         {
-            GameObject bulletPrefab = _instanceFactory.InstantiateObject(_staticDataService.ForPlayer().BulletPrefab);
+            ArmamentData armamentData = _staticDataService.GetArmamentData(ArmamentsTypeId.Bullet, 1);
+            
+            GameObject bulletPrefab = _instanceFactory.InstantiateObject(armamentData.Prefab);
             Bullet bullet = bulletPrefab.GetComponent<Bullet>();
             bullet.Construct(objectPool, _physicsService);
-            bullet.SpeedBullet = _staticDataService.ForPlayer().SpeedBullet;
+            bullet.SpeedBullet = armamentData.Speed;
+            bullet.CircleRadius = armamentData.CircleRadius;
             
             return bulletPrefab;
         }
 
         private GameObject CreateBomb(IObjectPool objectPool)
         {
-            GameObject bombPrefab = _instanceFactory.InstantiateObject(_staticDataService.ForPlayer().BombPrefab);
+            ArmamentData armamentData = _staticDataService.GetArmamentData(ArmamentsTypeId.Bomb, 1);
+            
+            GameObject bombPrefab = _instanceFactory.InstantiateObject(armamentData.Prefab);
             Bomb bomb = bombPrefab.GetComponent<Bomb>();
             bomb.Construct(objectPool, _physicsService);
+            bomb.TimeToExplode = armamentData.TimeToExplode;
+            bomb.CircleRadius = armamentData.CircleRadius;
 
             return bombPrefab;
         }

@@ -1,4 +1,6 @@
+using CodeBase.Gameplay.Armaments;
 using CodeBase.Gameplay.Enemy;
+using CodeBase.UI.Service;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,28 +10,43 @@ namespace CodeBase.UI
    public class Hud : MonoBehaviour
    {
       public TextMeshProUGUI ScoreText;
+      public TextMeshProUGUI BombsCountText;
+      
       public Button MenuButton;
+      
+      public int MaxSpawnCountBomb { get; set; }
 
-      private float _score;
+      private int _score = 0;
+      private int _bomb = 0;
 
-      private SpawnMeteorite _spawnMeteorite;
       private IWindowsService _windowsService;
+      private IHudService _hudService;
 
 
-      public void Construct(IWindowsService windowsService, SpawnMeteorite spawnMeteorite)
+      public void Construct(IWindowsService windowsService, IHudService hudService)
       {
+         _hudService = hudService;
          _windowsService = windowsService;
-         _spawnMeteorite = spawnMeteorite;
-         _spawnMeteorite.DestroyMeteorite += ChangeScore;
+         _hudService.SetScore += ChangeScore;
+         _hudService.SetArmamentsCount += ChangeBombsCount;
       }
 
-      private void Awake()
+      private void Start()
       {
          ScoreText.text = $"Score: {_score}";
          MenuButton.onClick.AddListener(OpenMenu);
+         
       }
 
-      private void ChangeScore(float score)
+      private void ChangeBombsCount(int bombs)
+      {
+         _bomb = bombs;
+         BombsCountText.text = $"Bomb: {_bomb.ToString()}/{MaxSpawnCountBomb}";
+      }
+
+      
+
+      private void ChangeScore(int score)
       {
          _score += score;
          ScoreText.text = $"Score: {_score.ToString()}";

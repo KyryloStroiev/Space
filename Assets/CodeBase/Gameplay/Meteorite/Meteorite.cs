@@ -13,7 +13,7 @@ namespace CodeBase.Gameplay.Enemy
         public GameObject ParticleEffect;
         public Sound Sound;
     
-        public float Score { get; set; }
+        public int Score { get; set; }
     
         public Heart Heart;
         public List<GameObject> EmptyPoint = new ();

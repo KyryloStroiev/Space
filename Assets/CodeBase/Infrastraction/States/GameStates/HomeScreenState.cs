@@ -1,6 +1,8 @@
 using CodeBase.Gameplay.Factory;
 using CodeBase.Infrastraction.States.StateInfrastructure;
 using CodeBase.UI;
+using CodeBase.UI.Factory;
+using CodeBase.UI.Service;
 
 namespace CodeBase.Infrastraction.States.GameStates
 {

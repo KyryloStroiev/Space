@@ -1,11 +1,9 @@
 ﻿using CodeBase.Gameplay.Enemy;
-using CodeBase.Infrastraction;
-using CodeBase.Infrastraction.Service;
 using CodeBase.Infrastraction.States;
-using CodeBase.UI;
+using CodeBase.UI.Service;
 using UnityEngine;
 
-namespace CodeBase.Gameplay.Factory
+namespace CodeBase.UI.Factory
 {
     public interface IUIFactory
     {

@@ -7,6 +7,7 @@ using CodeBase.Infrastraction.Loading;
 using CodeBase.Infrastraction.Service;
 using CodeBase.Infrastraction.States.StateInfrastructure;
 using CodeBase.UI;
+using CodeBase.UI.Service;
 using UnityEngine;
 
 namespace CodeBase.Infrastraction.States.GameStates
@@ -54,12 +55,12 @@ namespace CodeBase.Infrastraction.States.GameStates
         private void InitGameWorld()
         {
             _objectPool.Instantiate();
+            
             GameObject spawn = _meteoriteFactory.CreateSpawn();
-
+            
             _windowsService.CreateHud(spawn.GetComponent<SpawnMeteorite>());
             
             LevelData levelData = _staticDataService.ForLevel();
-
             InitialPlayer(levelData);
         }
 

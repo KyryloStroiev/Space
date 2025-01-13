@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2a90164e10e4f00932854d3c1c6713e, type: 3}
+  m_Name: bombConfig
+  m_EditorClassIdentifier: 
+  TypeId: 2
+  Datas:
+  - MaxSpawnCount: 5
+    Speed: 0
+    CircleRadius: 14
+    TimeToExplode: 1.8
+    Prefab: {fileID: 7608744025849636451, guid: 45bb649de0954ba4599cfa841a9cc48f, type: 3}

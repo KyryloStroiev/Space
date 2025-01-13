@@ -1,7 +1,8 @@
 ﻿using CodeBase.Gameplay.Enemy;
 using CodeBase.Gameplay.Factory;
+using CodeBase.UI.Factory;
 
-namespace CodeBase.UI
+namespace CodeBase.UI.Service
 {
     public class WindowsService : IWindowsService
     {
