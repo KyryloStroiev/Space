@@ -54,6 +54,7 @@ namespace CodeBase.UI
 
       private void OpenMenu()
       {
+         
          Time.timeScale = 0f;
          _windowsService.Open(WindowsTypeId.PauseMenu);
       }
