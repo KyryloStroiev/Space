@@ -5,6 +5,7 @@ namespace CodeBase.UI.Service
 {
     public class HudService : IHudService
     {
+        public float Score { get; set; }
         public event Action<int> SetArmamentsCount;
         public event Action<int> SetScore;
         
@@ -17,6 +18,7 @@ namespace CodeBase.UI.Service
         public void GetScore(int score)
         {
             SetScore?.Invoke(score);
+            Score += score;
         }
         
     }

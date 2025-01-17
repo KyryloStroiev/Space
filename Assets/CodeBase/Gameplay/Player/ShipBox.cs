@@ -38,9 +38,9 @@ namespace CodeBase.Gameplay.Logic
                 
                 if (CollisionMeteorite(box) != null)
                 {
+                    Instantiate(ParticleEffect, box.transform.position, Quaternion.identity);
                     Destroy(CollisionMeteorite(box).gameObject);
                     Sound.PlayOneShot(SoundType.PlayerHit);
-                    Instantiate(ParticleEffect, box.transform.position, Quaternion.identity);
                     _boxesToRemove.Add(box);     
                     Destroy(box);                 
                 }

@@ -1,4 +1,5 @@
 using CodeBase.Gameplay.Enemy;
+using CodeBase.UI.Config;
 
 namespace CodeBase.UI.Service
 {

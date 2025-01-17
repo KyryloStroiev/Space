@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace CodeBase.UI
+namespace CodeBase.UI.Config
 {
     [Serializable]
     public class WindowsConfig

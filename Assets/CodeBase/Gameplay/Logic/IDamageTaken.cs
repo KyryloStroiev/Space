@@ -2,8 +2,9 @@
 
 namespace CodeBase.Gameplay.Logic
 {
-    public interface IHealth
+    public interface IDamageTaken
     {
-        void TakeDamage(GameObject cube);
+        void TakeDamage();
+        
     }
 }

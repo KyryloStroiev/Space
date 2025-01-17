@@ -66,7 +66,7 @@
 				{
 					"directoryIndex" : 1,
 					"id" : "swappywrapper::@7e25bd1f32ce224db4e9",
-					"jsonFile" : "target-swappywrapper-RelWithDebInfo-0ebe950d71e48594744e.json",
+					"jsonFile" : "target-swappywrapper-RelWithDebInfo-9c99b7b034ba3e4d2c5b.json",
 					"name" : "swappywrapper",
 					"projectIndex" : 1
 				}
@@ -76,7 +76,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "D:/src_Unity/RepozitorGITHub/Space/.utmp/RelWithDebInfo/2u6b6p4s/arm64-v8a",
+		"build" : "D:/src_Unity/RepozitorGITHub/Space/.utmp/RelWithDebInfo/2u6b6p4s/armeabi-v7a",
 		"source" : "D:/src_Unity/RepozitorGITHub/Space/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp"
 	},
 	"version" : 

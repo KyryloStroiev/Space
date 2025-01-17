@@ -1,6 +1,9 @@
 ﻿using System;
+using CodeBase.Common.PhysicsService;
 using CodeBase.Gameplay.Factory;
 using CodeBase.Gameplay.Logic;
+using CodeBase.Gameplay.Obstacle;
+using CodeBase.Gameplay.Obstacle.Factory;
 using CodeBase.Gameplay.Sounds;
 using CodeBase.UI.Service;
 using UnityEngine;
@@ -14,7 +17,6 @@ namespace CodeBase.Gameplay.Enemy
         public float MaxTimeSpawn { get; set; }
 
         public Sound Sound;
-        public event Action<float> DestroyMeteorite;
 
         private float _timeSpawn;
         private float _cooldownReduction= 0.015f;
@@ -22,9 +24,13 @@ namespace CodeBase.Gameplay.Enemy
         
         private IMeteoriteFactory _meteoriteFactory;
         private IHudService _hudService;
+        private IObstacleFactory _obstacleFactory;
+        private IPhysicsService _physicsService;
 
-        public void Construct(IMeteoriteFactory meteoriteFactory, IHudService hudService)
+        public void Construct(IMeteoriteFactory meteoriteFactory, IHudService hudService, IObstacleFactory obstacleFactory, IPhysicsService physicsService)
         {
+            _physicsService = physicsService;
+            _obstacleFactory = obstacleFactory;
             _hudService = hudService;
             _meteoriteFactory = meteoriteFactory;
         }
@@ -45,14 +51,16 @@ namespace CodeBase.Gameplay.Enemy
                 SetTimeSpawn();
                 ReducingSpawnTime();
             }
+            
         }
 
 
         private void SpawnMeteorites()
         {
             GameObject meteorite = _meteoriteFactory.CreateMeteorite(GetRandomType());
-            meteorite.GetComponent<Meteorite>().Construct(this);
+            meteorite.GetComponent<Meteorite>().Construct(this, _physicsService);
         }
+        
 
         private MeteoriteTypeId GetRandomType() => 
             (MeteoriteTypeId)Random.Range(0, Enum.GetValues(typeof(MeteoriteTypeId)).Length);

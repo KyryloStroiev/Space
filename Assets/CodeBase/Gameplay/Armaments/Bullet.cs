@@ -13,6 +13,7 @@ namespace CodeBase.Gameplay.Logic
         public Rigidbody2D Rigidbody;
 
         public LayerMask CubeMask;
+        public LayerMask HeartMask;
 
         public float CircleRadius;
         public float SpeedBullet { get; set; }
@@ -53,6 +54,15 @@ namespace CodeBase.Gameplay.Logic
             {
                 Destroy(CubeMeteorite(CubeMask).gameObject);
                 StartCoroutine(ReturnToPool(0.02f));
+                
+            }
+            else if (CubeMeteorite(HeartMask) != null)
+            {
+                IDamageTaken damageable = CubeMeteorite(HeartMask).gameObject.GetComponentInParent<IDamageTaken>();
+                if (damageable != null)
+                {
+                    damageable.TakeDamage();
+                }
             }
         }
 

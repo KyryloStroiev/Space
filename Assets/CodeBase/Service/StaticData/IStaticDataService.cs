@@ -1,8 +1,10 @@
 ﻿using CodeBase.Gameplay.Armaments;
 using CodeBase.Gameplay.Enemy;
 using CodeBase.Gameplay.Levels;
+using CodeBase.Gameplay.Obstacle;
 using CodeBase.Gameplay.Player;
 using CodeBase.UI;
+using CodeBase.UI.Config;
 
 namespace CodeBase.Infrastraction.Service
 {
@@ -17,5 +19,6 @@ namespace CodeBase.Infrastraction.Service
         WindowsConfig GetWindowsConfig(WindowsTypeId windowsTypeId);
         CommonMeteoritesData ForCommonMeteorites();
         ArmamentData GetArmamentData(ArmamentsTypeId armamentsTypeId, int level);
+        ObstacleConfig GetObstacleConfig(ObstacleTypeId obstacleTypeId);
     }
 }

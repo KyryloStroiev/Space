@@ -1,4 +1,4 @@
-﻿namespace CodeBase.UI
+﻿namespace CodeBase.UI.Config
 {
     public enum WindowsTypeId
     {

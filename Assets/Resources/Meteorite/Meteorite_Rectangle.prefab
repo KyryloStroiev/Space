@@ -3056,7 +3056,6 @@ GameObject:
   - component: {fileID: 2034962420336752160}
   - component: {fileID: 7097728293996086562}
   - component: {fileID: 6534883759791386279}
-  - component: {fileID: 6429075762081345709}
   m_Layer: 11
   m_Name: Heart
   m_TagString: Untagged
@@ -3164,7 +3163,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -3180,18 +3179,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6429075762081345709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3512299701598583543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 652ea79d76d04985a4b606c6a20ad231, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3562538869750808464
 GameObject:
   m_ObjectHideFlags: 0
@@ -3969,7 +3956,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParticleEffect: {fileID: 9141243664397350007, guid: 522b218e5dbecf84aac276d32f54abed, type: 3}
   Sound: {fileID: -1564400384330226004}
-  Heart: {fileID: 6429075762081345709}
   EmptyPoint:
   - {fileID: 2567658583812019512}
   - {fileID: 1823012937176279713}
@@ -4051,6 +4037,7 @@ MonoBehaviour:
   - {fileID: 7960810752312139407}
   - {fileID: 909450134042620947}
   - {fileID: 2938892607025998737}
+  Cube: []
 --- !u!114 &4231532678064087973
 MonoBehaviour:
   m_ObjectHideFlags: 0

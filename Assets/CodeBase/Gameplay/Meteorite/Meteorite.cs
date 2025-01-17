@@ -1,32 +1,29 @@
-using System;
 using System.Collections.Generic;
-using CodeBase.Gameplay.Armaments;
+using CodeBase.Common.PhysicsService;
 using CodeBase.Gameplay.Logic;
-using CodeBase.Gameplay.Sounds;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace CodeBase.Gameplay.Enemy
 {
-    public class Meteorite : MonoBehaviour
+    public class Meteorite : MonoBehaviour, IDamageTaken
     {
+       
         public GameObject ParticleEffect;
         public Sound Sound;
     
         public int Score { get; set; }
-    
-        public Heart Heart;
+        
         public List<GameObject> EmptyPoint = new ();
         public List<GameObject> Cube = new ();
         private SpawnMeteorite _spawnMeteorite;
+        private IPhysicsService _physicsService;
 
-        public void Construct(SpawnMeteorite spawnMeteorite)
+        public void Construct(SpawnMeteorite spawnMeteorite, IPhysicsService physicsService)
         {
+            _physicsService = physicsService;
             _spawnMeteorite = spawnMeteorite;
         }
-        
-        private void Start() => 
-            Heart.Hit += Destroy;
+
         
         private void Destroy()
         {
@@ -35,7 +32,10 @@ namespace CodeBase.Gameplay.Enemy
             Destroy(gameObject);
         }
 
-        private void OnDisable() => 
-            Heart.Hit -= Destroy;
+
+        public void TakeDamage()
+        {
+            Destroy();
+        }
     }
 }

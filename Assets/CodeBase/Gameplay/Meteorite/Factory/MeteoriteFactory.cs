@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using CodeBase.Common.PhysicsService;
 using CodeBase.Gameplay.Armaments;
 using CodeBase.Gameplay.Cameras;
 using CodeBase.Gameplay.Enemy;
 using CodeBase.Gameplay.Levels;
 using CodeBase.Gameplay.Logic;
+using CodeBase.Gameplay.Obstacle.Factory;
 using CodeBase.Infrastraction.Service;
 using CodeBase.UI.Service;
 using UnityEngine;
@@ -17,16 +19,21 @@ namespace CodeBase.Gameplay.Factory
         private readonly IInstanceFactory _instanceFactory;
         private readonly ICameraProvider _cameraProvider;
         private readonly IHudService _hudService;
+        private readonly IObstacleFactory _obstacleFactory;
+        private readonly IPhysicsService _physicsService;
         private LevelData _levelData;
         private CommonMeteoritesData _commonMeteoritesData;
 
 
-        public MeteoriteFactory(IStaticDataService staticDataService, IInstanceFactory instanceFactory, ICameraProvider cameraProvider, IHudService hudService)
+        public MeteoriteFactory(IStaticDataService staticDataService, IInstanceFactory instanceFactory,
+            ICameraProvider cameraProvider, IHudService hudService, IObstacleFactory obstacleFactory, IPhysicsService physicsService)
         {
             _staticDataService = staticDataService;
             _instanceFactory = instanceFactory;
             _cameraProvider = cameraProvider;
             _hudService = hudService;
+            _obstacleFactory = obstacleFactory;
+            _physicsService = physicsService;
         }
 
 
@@ -35,7 +42,7 @@ namespace CodeBase.Gameplay.Factory
             _commonMeteoritesData = _staticDataService.ForCommonMeteorites();
             GameObject spawnPoint = _instanceFactory.InstantiateObject(_commonMeteoritesData.SpawnMeteoritePrefab);
             SpawnMeteorite spawnMeteorite = spawnPoint.GetComponent<SpawnMeteorite>();
-            spawnMeteorite.Construct(this, _hudService);
+            spawnMeteorite.Construct(this, _hudService, _obstacleFactory, _physicsService);
             spawnMeteorite.MinTimeSpawn = _commonMeteoritesData.MinTimeSpawnMeteorite;
             spawnMeteorite.MaxTimeSpawn = _commonMeteoritesData.MaxTimeSpawnMeteorite;
             return spawnPoint;

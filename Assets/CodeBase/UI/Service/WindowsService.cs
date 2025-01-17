@@ -1,5 +1,6 @@
 ﻿using CodeBase.Gameplay.Enemy;
 using CodeBase.Gameplay.Factory;
+using CodeBase.UI.Config;
 using CodeBase.UI.Factory;
 
 namespace CodeBase.UI.Service

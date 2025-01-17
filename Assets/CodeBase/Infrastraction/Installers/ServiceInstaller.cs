@@ -3,6 +3,7 @@ using CodeBase.Gameplay.Cameras;
 using CodeBase.Gameplay.Factory;
 using CodeBase.Gameplay.Levels;
 using CodeBase.Gameplay.Logic;
+using CodeBase.Gameplay.Obstacle.Factory;
 using CodeBase.Gameplay.Player.Factory;
 using CodeBase.Infrastraction.Service;
 using CodeBase.Service.InputsService;
@@ -44,6 +45,7 @@ namespace CodeBase.Infrastraction.Installers
             Container.Bind<IPlayerFactory>().To<PlayerFactory>().AsSingle();
             Container.Bind<IArmamentsFactory>().To<ArmamentsFactory>().AsSingle();
             Container.Bind<IPhysicsService>().To<PhysicsService>().AsSingle();
+            Container.Bind<IObstacleFactory>().To<ObstacleFactory>().AsSingle();
         }
 
         private void BindCommonServices()

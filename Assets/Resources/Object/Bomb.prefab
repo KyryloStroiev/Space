@@ -59,8 +59,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfd3c1fa569043048fa8cd69650cfd32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeToExplode: 1.8
-  CircleRadius: 14
   LayerMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -91,7 +89,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpriteRenderer: {fileID: 1390661662505719594}
-  StartBlinkDuration: 0.5
 --- !u!1001 &1017346305448404
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using CodeBase.Gameplay.Armaments;
 using CodeBase.Gameplay.Enemy;
+using CodeBase.UI.Config;
 using CodeBase.UI.Service;
 using TMPro;
 using UnityEngine;

@@ -48,7 +48,7 @@ namespace CodeBase.Gameplay.Player.Factory
 
         private void ConfigurePlayer(GameObject playerPrefab, PlayerConfig config)
         {
-            playerPrefab.GetComponent<PlayerDeath>().Construct(_windowsService);
+            playerPrefab.GetComponentInChildren<PlayerHeart>().Construct(_windowsService, _physicsService, _instanceFactory);
             PlayerBulletShot[] playerShots = playerPrefab.GetComponentsInChildren<PlayerBulletShot>();
 
             foreach (PlayerBulletShot playerShot in playerShots)

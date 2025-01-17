@@ -4,6 +4,7 @@ using CodeBase.Gameplay.Factory;
 using CodeBase.Infrastraction;
 using CodeBase.Infrastraction.Service;
 using CodeBase.Infrastraction.States;
+using CodeBase.UI.Config;
 using CodeBase.UI.Service;
 using UnityEngine;
 
@@ -45,7 +46,15 @@ namespace CodeBase.UI.Factory
         {
             WindowsConfig windowsConfig = _staticDataService.GetWindowsConfig(windowsTypeId);
             GameObject Menu = _instanceFactory.InstantiateObject(windowsConfig.Prefab);
-            Menu.GetComponent<Menu>().Construct(_gameStateMachine);
+          
+            if (Menu.GetComponent<GameOverMenu>() != null)
+            {
+                Menu.GetComponent<GameOverMenu>().Construct(_gameStateMachine, _hudService);
+            }
+            else
+            {
+                Menu.GetComponent<Menu>().Construct(_gameStateMachine);
+            }
         }
         
     }

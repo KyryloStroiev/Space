@@ -52,8 +52,12 @@ namespace CodeBase.Gameplay.Armaments
             {
                 foreach (Collider2D meteorite in CheckMeteorite())
                 {
-                    Destroy(meteorite.gameObject);
-                    
+                    IDamageTaken damageable = meteorite.gameObject.GetComponentInParent<IDamageTaken>();
+                    if (damageable != null)
+                    {
+                        damageable.TakeDamage();
+                    }
+
                 }
                 BombAnimation.StopBlinking();
                 _objectPool.DisableObject(gameObject, ArmamentsTypeId.Bomb);

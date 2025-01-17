@@ -26804,8 +26804,6 @@ GameObject:
   - component: {fileID: 2157576496599994703}
   - component: {fileID: 5559170862227288039}
   - component: {fileID: 2245041098139995961}
-  - component: {fileID: 303153931289261420}
-  - component: {fileID: 7682219196956635927}
   m_Layer: 6
   m_Name: Heart
   m_TagString: Untagged
@@ -26913,7 +26911,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -26929,36 +26927,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &303153931289261420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7163027846959162178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 652ea79d76d04985a4b606c6a20ad231, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7682219196956635927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7163027846959162178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47a6d322cd7ff294da6826e74bed1bdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  AllBoxs: []
-  ParticleEffect: {fileID: 0}
-  Sound: {fileID: 0}
 --- !u!1 &7302714012558994928
 GameObject:
   m_ObjectHideFlags: 0
@@ -32127,10 +32095,10 @@ GameObject:
   - component: {fileID: 9167764870748100305}
   - component: {fileID: 4577668683544884785}
   - component: {fileID: 3027871992423574087}
-  - component: {fileID: 9034635936108891297}
   - component: {fileID: -6229899773675558749}
   - component: {fileID: 852617941229930260}
   - component: {fileID: 6978593980204133621}
+  - component: {fileID: 1075952027478270683}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -32334,20 +32302,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animator: {fileID: 4577668683544884785}
   PlayerMove: {fileID: 9167764870748100305}
---- !u!114 &9034635936108891297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9072020969581434280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13fd18b4b0d5472f9a28cba34f85b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Heart: {fileID: 303153931289261420}
-  PlayerMove: {fileID: 9167764870748100305}
 --- !u!114 &-6229899773675558749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32376,7 +32330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LayerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 9216
   AllBoxs:
   - {fileID: 2703452710679996384}
   - {fileID: 5366804892559995278}
@@ -32628,7 +32582,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9956c78f3612460fb15111f27e6577eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimerRespawnBomb: 10
   SetBombPoint: {fileID: 2824835694292602255}
+  _timerRespawnBomb: 0
+--- !u!114 &1075952027478270683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9072020969581434280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13fd18b4b0d5472f9a28cba34f85b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HeartPrefab: {fileID: 7163027846959162178}
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 9216
+  PlayerMove: {fileID: 9167764870748100305}
 --- !u!1 &9092013102936113498
 GameObject:
   m_ObjectHideFlags: 0
