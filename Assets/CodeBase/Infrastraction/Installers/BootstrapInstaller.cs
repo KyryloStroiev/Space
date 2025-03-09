@@ -1,13 +1,7 @@
-using CodeBase.Gameplay.Cameras;
-using CodeBase.Gameplay.Factory;
-using CodeBase.Gameplay.Levels;
-using CodeBase.Gameplay.Logic;
 using CodeBase.Infrastraction.Loading;
-using CodeBase.Infrastraction.Service;
 using CodeBase.Infrastraction.States;
 using CodeBase.Infrastraction.States.Factory;
 using CodeBase.Infrastraction.States.GameStates;
-using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Infrastraction.Installers
